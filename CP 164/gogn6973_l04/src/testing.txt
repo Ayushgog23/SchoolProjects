@@ -1,0 +1,517 @@
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+# Imports
+from Movie import Movie
+
+movie = Movie("Spiderman", 2004, None, None, None)
+print(movie)
+
+#output
+Title:    Spiderman
+Year:     2004
+Director: None
+Rating:   None
+Genres:   None
+ 
+#accepts None 
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+def _linear_search(self, key):
+        """
+        -------------------------------------------------------
+        Searches for the first occurrence of key in the list.
+        Private helper method - used only by other ADT methods.
+        Use: i = self._linear_search(key)
+        -------------------------------------------------------
+        Parameters:
+            key - a partial data element (?)
+        Returns:
+            i - the index of key in the list, -1 if key is not found (int)
+        -------------------------------------------------------
+        """     #[1,2,3,3]
+        
+        i = 0
+        if key in self._values:
+            while self._values[i] != key:
+                i += 1
+        elif not key in self._values:
+            i = -1
+    
+        return i 
+        
+#linear search is a helper method (not to be tested as stated in lab instructions)
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+def append(self, value):
+        """
+        -------------------------------------------------------
+        Adds a copy of value to the end of the List.
+        Use: source.append(value)
+        -------------------------------------------------------
+        Parameters:
+            value - a data element (?)
+        Returns:
+            None
+        -------------------------------------------------------
+        """      
+        deepcopied = deepcopy(value)
+        newvalues = self._values + [deepcopied]
+        self._values = newvalues
+        
+        return None
+        
+def insert(self, i, value):
+        """
+        -------------------------------------------------------
+        A copy of value is added to index i, following values are pushed right.
+        If i outside of range of -len(list) to len(list) - 1, the value is 
+        prepended or appended as appropriate.
+        Use: source.insert(i, value)
+        -------------------------------------------------------
+        Parameters:
+            i - index value (int)
+            value - a data element (?)
+        Returns:
+            None
+        -------------------------------------------------------
+        """       
+                  
+        
+        j = 0
+        for k in self._values:
+            j += 1
+        
+        if i >= 0 and i <= (j-1):
+            list = [None] * (j+1)
+            for r in range(0,i,1):
+                list[r] = self._values[r]
+            
+            for z in range(i+1,j+1,1):
+                list[z] = self._values[z-1]
+            list[i] = value
+            self._values = list
+        elif i < 0 and i >= -j:
+            list = [None] * (j+1)
+            
+            i = i + j
+            for r in range(0,i,1):
+                list[r] = self._values[r]
+            
+            for z in range(i+1,j+1,1):
+                list[z] = self._values[z-1]
+        
+            list[i] = value
+            self._values = list
+        elif i < -j:
+            list = [None] * (j+1)
+
+            for r in range(j,0,-1):
+                list[r] = self._values[r-1]
+            
+        
+            list[0] = value
+            self._values = list
+        else:
+            list = self._values + [value]
+            self._values = list
+        
+
+        return None
+        
+def remove(self, key):
+        """
+        -------------------------------------------------------
+        Finds, removes, and returns the first value in list that matches key.
+        Use: value = source.remove(key)
+        -------------------------------------------------------
+        Parameters:
+            key - a partial data element (?)
+        Returns:
+            value - the full value matching key, otherwise None (?)
+        -------------------------------------------------------
+        """            #[1,2,3,4,5]
+                       # 0,1,2,3,4
+        i = self._linear_search(key)
+        
+        if i == -1:
+            value = None
+        else:
+            value = self._values[i]
+            del self._values[i]
+        
+        
+        return value
+        
+#testing
+from List_array import List
+
+value = 4
+key = value
+target = List()
+target.append(value)
+target.insert(0, 5)
+value = target.remove(key)
+
+print(target)
+print(value)
+
+#output
+<List_array.List object at 0x000001E154084580>
+4
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+def __contains__(self, key):
+        """
+        ---------------------------------------------------------
+        Determines if the list contains key.
+        Use: b = key in source
+        -------------------------------------------------------
+        Parameters:
+            key - a partial data element (?)
+        Returns:
+            True if the list contains key, False otherwise. (boolean)
+        -------------------------------------------------------
+        """
+        i = self._linear_search(key)
+        
+        value = True
+        if i == -1:
+            value = False
+        
+
+        return value
+        
+def count(self, key):
+        """
+        -------------------------------------------------------
+        Finds the number of times key appears in list.
+        Use: n = source.count(key)
+        -------------------------------------------------------
+        Parameters:
+            key - a partial data element (?)
+        Returns:
+            number - number of times key appears in list (int)
+        -------------------------------------------------------
+        """
+        number = 0
+        for value in self._values:
+            if value == key:
+                number += 1
+    
+        
+        return number
+        
+def find(self, key):
+        """
+        -------------------------------------------------------
+        Finds and returns a copy of the first value in list that matches key.
+        Use: value = source.find(key)
+        -------------------------------------------------------
+        Parameters:
+            key - a partial data element (?)
+        Returns:
+            value - a copy of the full value matching key, otherwise None (?)
+        -------------------------------------------------------
+        """
+        
+        i = self._linear_search(key)
+        
+        if i != -1:
+            value = deepcopy(self._values[i])
+        elif i == -1:
+            value = None
+        
+
+        return value
+
+def index(self, key):
+    """
+    -------------------------------------------------------
+    Finds location of a value by key in list.
+    Use: n = source.index(key)
+    -------------------------------------------------------
+    Parameters:
+        key - a partial data element (?)
+    Returns:
+        i - the index of the location of key in the list, -1 if
+          key is not in the list. (int)
+    -------------------------------------------------------
+    """
+    
+    i = self._linear_search(key)
+            
+    return i
+
+def max(self):
+        """
+        -------------------------------------------------------
+        Finds the maximum value in list.
+        Use: value = source.max()
+        -------------------------------------------------------
+        Returns:
+            value - a copy of the maximum value in the list (?)
+        -------------------------------------------------------
+        """
+        assert (len(self._values) > 0), 'Cannot find maximum of an empty list'
+
+
+        value = self._values[0]
+        for k in self._values:
+            if k > value:
+                value = k
+        value = deepcopy(value)
+        return value
+
+    def min(self):
+        """
+        -------------------------------------------------------
+        Finds the minimum value in list.
+        Use: value = source.min()
+        -------------------------------------------------------
+        Returns:
+            value - a copy of the minimum value in the list (?)
+        -------------------------------------------------------
+        """
+        assert (len(self._values) > 0), 'Cannot find minimum of an empty list'
+
+        value = self._values[0]
+        for k in self._values:
+            if k < value:
+                value = k
+                
+        value = deepcopy(value)
+        return value
+        
+        
+#testing
+from List_array import List
+key = 3
+target = List()
+target.append(1)
+target.append(2)
+target.append(3)
+isin = key in target
+counter = target.count(key)
+value = target.find(key)
+index = target.index(key)
+maximum = target.max()
+minimum = target.min()
+
+print(isin)
+print(counter)
+print(value)
+print(index)
+print(maximum)
+print(minimum)
+
+
+#output
+True
+1
+3
+2
+3
+1
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+def __getitem__(self, i):
+        """
+        -------------------------------------------------------
+        Returns a copy of the nth element of the list.
+        Use: value = source[i]
+        -------------------------------------------------------
+        Parameters:
+            i - index of the element to access (int)
+        Returns:
+            value - the i-th element of list (?)
+        -------------------------------------------------------
+        """
+        assert self._is_valid_index(i), 'Invalid index value'
+        
+        value = deepcopy(self._values[i])        
+
+        return value
+        
+def __setitem__(self, i, value):
+        """
+        -------------------------------------------------------
+        The i-th element of list contains a copy of value. The existing
+        value at i is overwritten.
+        Use: source[i] = value
+        -------------------------------------------------------
+        Parameters:
+            i - index of the element to access (int)
+            value - a data value (?)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        assert self._is_valid_index(i), 'Invalid index value'
+
+        self._values[i] = deepcopy(value)
+
+        return None
+        
+#testing
+from List_array import List
+
+target = List()
+target.append(1)
+target.append(2)
+target.append(3)
+i = 0
+value = target[i]
+print(target)
+print(value)
+target[i] = value
+print(value)
+print(target)
+
+#output
+<List_array.List object at 0x000001BDD40A4580>
+1
+1
+<List_array.List object at 0x000001BDD40A4580>
+
+
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+
+def array_to_list(llist, source):
+    """
+    -------------------------------------------------------
+    Appends contests of source to llist. At finish, source is empty.
+    Last element in source is at rear of llist,
+    first element in source is at front of llist.
+    Use: array_to_list(llist, source)
+    -------------------------------------------------------
+    Parameters:
+        llist - a List object (List)
+        source - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    while source != []:
+        llist.append(source[0])
+        source.pop(0)
+        
+    
+    return None
+        
+        
+def list_to_array(llist, target):
+    """
+    -------------------------------------------------------
+    Removes contents of llist into target. At finish, llist is empty.
+    Front element of llist is at front of target,
+    rear element of llist is at rear of target.
+    Use: list_to_array(llist, target)
+    -------------------------------------------------------
+    Parameters:        
+        llist - a List object (List)
+        target - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    target = List()
+    while llist != []:
+        target.append(llist[0])
+        del llist[0]
+    
+    return 
+    
+
+-------------------------------------------------------
+t07
+-------------------------------------------------------
+def list_test(source):
+    """
+    -------------------------------------------------------
+    Tests List implementation.
+    The methods of List are tested for both empty and
+    non-empty lists using the data in source
+    Use: list_test(source)
+    -------------------------------------------------------
+    Parameters:
+        source - list of data (list of ?)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    lst = List()
+    print(source)
+    key = source[0]
+    value = source[1]
+    i = 0
+    appendedvalue = source.append(source[0])
+    source.append(source[3])
+    insertedvalue = source.insert(i,value)
+    source.remove(source[3])
+    lst.append(source[0])
+    lst.append(source[1])
+    lst.append(source[2])
+    counted = source.count(key)
+    value = lst.find(key)
+    index = lst.index(key)
+    maximum = lst.max()
+    minimum = lst.min()
+    b = key in source
+    getitem = source[i]
+    source[i] = value
+    
+    print(lst)
+    print(source)
+    print(appendedvalue)
+    print(insertedvalue)
+    print(counted)
+    print(value)
+    print(index)
+    print(maximum)
+    print(minimum)
+    print(b)
+    print(getitem)
+    
+    
+    
+    
+    
+    
+
+    return 
+    
+#testing
+# Imports
+from utilities import list_test
+
+fh = open("movies.txt","r",encoding = "utf-8")
+line = fh.readline()
+source = []
+while line != "":
+    splittedline = line.split("|")
+    source.append(int(splittedline[1]))
+    line = fh.readline()
+list_test(source)
+
+#output
+[1994, 1998, 1964, 2007, 1971, 1964, 1965, 2007, 2007, 2007, 2005, 1977, 1958, 1963, 1966, 2016, 1966, 1964, 1969, 2017, 2013]
+<List_array.List object at 0x000002762FDAABF0>
+[1994, 1994, 1998, 2007, 1971, 1964, 1965, 2007, 2007, 2007, 2005, 1977, 1958, 1963, 1966, 2016, 1966, 1964, 1969, 2017, 2013, 1994, 2007]
+None
+None
+2
+1994
+1
+1998
+1994
+True
+1998

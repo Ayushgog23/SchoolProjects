@@ -1,0 +1,236 @@
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+cannot test because we were creating methods. Here is the code though
+
+	def is_empty(self):
+        """
+        -------------------------------------------------------
+        Determines if the stack is empty.
+        Use: b = s.is_empty()
+        -------------------------------------------------------
+        Returns:
+            True if the stack is empty, False otherwise
+        -------------------------------------------------------
+        """
+        b = False
+        if len(self._values) == 0:
+            b = True
+           
+        return b
+            
+		
+	def push(self, value):
+        """
+        -------------------------------------------------------
+        Pushes a copy of value onto the top of the stack.
+        Use: s.push(value)
+        -------------------------------------------------------
+        Parameters:
+            value - a data element (?)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        
+        self._values.append(value)
+        value = deepcopy(value)
+        
+        return None
+    
+    def pop(self):
+        """
+        -------------------------------------------------------
+        Pops and returns the top of stack. The value is removed
+        from the stack. Attempting to pop from an empty stack
+        throws an exception.
+        Use: value = s.pop()
+        -------------------------------------------------------
+        Returns:
+            value - the value at the top of the stack (?)
+        -------------------------------------------------------
+        """
+        assert len(self._values) > 0, "Cannot pop from an empty stack"
+        
+        i = len(self._values) - 1
+        value = self._values[i]
+        self._values.pop()
+        
+        return value
+
+    def peek(self):
+        """
+        -------------------------------------------------------
+        Returns a copy of the value at the top of the stack.
+        Attempting to peek at an empty stack throws an exception.
+        Use: value = s.peek()
+        -------------------------------------------------------
+        Returns:
+            value - a copy of the value at the top of the stack (?)
+        -------------------------------------------------------
+        """
+        assert len(self._values) > 0, "Cannot peek at an empty stack"
+
+        i = len(self._values) - 1
+        value = self._values[i]
+        value = deepcopy(value)
+        return value
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+def array_to_stack(stack, source):
+    """
+    -------------------------------------------------------
+    Pushes contents of source onto stack. At finish, source is empty.
+    Last value in source is at bottom of stack,
+    first value in source is on top of stack.
+    Use: array_to_stack(stack, source)
+    -------------------------------------------------------
+    Parameters:
+        stack - a Stack object (Stack)
+        source - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """                                 
+    while len(source) != 0:
+        lastvalue = source[len(source)-1]
+        stack.push(lastvalue)
+        source.pop()
+        
+    return None
+    
+# Imports
+from utilities import array_to_stack
+from Stack_array import Stack
+
+stack = Stack()
+source = [1,2,3]
+array_to_stack(stack, source)
+print(source)
+print(stack)   
+    
+    
+#output
+[]
+<Stack_array.Stack object at 0x0000013090C6C580>
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+def stack_to_array(stack, target):
+    """
+    -------------------------------------------------------
+    Pops contents of stack into target. At finish, stack is empty.
+    Top value of stack is at end of target,
+    bottom value of stack is at beginning of target.
+    Use: stack_to_array(stack, target)
+    -------------------------------------------------------
+    Parameters:
+        stack - a Stack object (Stack)
+        target - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    
+    while not stack.is_empty():
+        value = stack.peek()
+        target.insert(0,value)
+        stack.pop()
+        
+    return None
+    
+    
+#task file
+from utilities import stack_to_array
+from utilities import array_to_stack
+from Stack_array import Stack
+
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+target = []
+
+stack_to_array(stack, target)
+print(stack)
+print(target)
+
+
+#output
+<Stack_array.Stack object at 0x000002181440C580>
+[1, 2, 3]
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+def stack_test(source):
+    """
+    -------------------------------------------------------
+    Tests the methods of Stack for empty and
+    non-empty stacks using the data in source:
+    is_empty, push, pop, peek
+    (Testing pop and peek while empty throws exceptions)
+    Use: stack_test(source)
+    -------------------------------------------------------
+    Parameters:
+        source - list of data (list of ?)
+    Returns:
+        empty, push, pop, peak
+    -------------------------------------------------------
+    """
+    s = Stack()
+    array_to_stack(s, source)
+    empty = s.is_empty()
+    peak = s.peek()
+    push = s.push(4)
+    pop = s.pop()
+    
+    return empty, push, peak, source
+    
+#task file
+False
+None
+1
+[]
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+def stack_test_movies(fv):
+    """
+    -------------------------------------------------------
+    Tests the methods of Stack for empty and
+    non-empty stacks using the data in movies:
+    is_empty, push, pop, peek
+    (Testing pop and peek while empty throws exceptions)
+    Use: stack_test_movies(fv)
+    -------------------------------------------------------
+    Parameters:
+        fv - file with movie data
+    Returns:
+        peek, empty
+    -------------------------------------------------------
+    """
+    s = Stack()
+    line = fv.readline()
+    while line != " ":
+        movie = read_movie(line)
+        s.push(movie)
+        line = fv.readline()
+    empty = s.is_empty()
+    s.pop()
+    peek = s.peek()
+    
+    return empty, peek, s
+
+
+from utilities import stack_test_movies
+
+fv = open("movies.txt", "r", encoding = "utf-8")
+empty, peek, s = stack_test_movies(fv)
+fv.close()
+print(empty)
+print(peek)
+print(s)

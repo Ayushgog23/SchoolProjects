@@ -1,0 +1,339 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+def genres_string(self):
+        """
+        -------------------------------------------------------
+        Returns comma delimited string of genres based upon the
+        current movie object's integer genres list.
+        e.g.: [0, 2] returns "science fiction, drama"
+        Use: string = movie.genres_string()
+        -------------------------------------------------------
+        Returns:
+            string - string of genres (str)
+        -------------------------------------------------------
+        """
+        
+        list = []
+        for i in self.genres:
+            list.append(Movie.GENRES[i])
+            
+        string = (",".join(list))
+            
+        return string
+        
+        
+#task file
+# Imports
+from Movie import Movie
+
+movie = Movie("Paul Blart",2004,"Tom",3.5,[0,2])
+string = movie.genres_string()
+print(string)
+
+
+#output
+science fiction,drama
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+def genres_list_string(self):
+        """
+        -------------------------------------------------------
+        Returns comma delimited string of genre indexes based upon the
+        current movie object's integer genres list.
+        e.g.: [0, 2] returns "0,2"
+        Use: string = movie.genres_list_string()
+        -------------------------------------------------------
+        Returns:
+            string - string of genre indexes (str)
+        -------------------------------------------------------
+        """
+        list = []
+        for i in self.genres:
+            list.append(str(i))
+            string = (",".join(list))
+            
+        return string
+        
+
+#task file
+from Movie import Movie
+
+movie = Movie("Paul Blart",2004,"Tom",3.5,[0,2])
+string = movie.genres_list_string()
+print(string)
+
+#output
+0,2
+
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+def genres_menu():
+        """
+        -------------------------------------------------------
+        Creates a string of Movie genres in the format:
+           0 science fiction
+           1 fantasy
+           2 drama
+           ...
+        Use: s = Movie.genres_menu()
+        Use: print(Movie.genres_menu())
+        -------------------------------------------------------
+        Returns:
+            string - A numbered string of Movie genres.
+        -------------------------------------------------------
+        """
+        string = "Genres\n"
+        for i in range(0,len(Movie.GENRES),1):
+           string += (f"{i:>2d} {Movie.GENRES[i]}\n")
+
+        return string
+
+
+#task file
+from Movie import Movie
+
+s = Movie.genres_menu()
+print(Movie.genres_menu())
+
+
+#output
+Genres
+ 0 science fiction
+ 1 fantasy
+ 2 drama
+ 3 romance
+ 4 comedy
+ 5 zombie
+ 6 action
+ 7 historical
+ 8 horror
+ 9 war
+10 mystery
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+def read_genres():
+    """
+    -------------------------------------------------------
+    Asks a user to select genres from a list of genres and returns
+    an integer list of the genres chosen.
+    Use: genres = read_genres()
+    -------------------------------------------------------
+    Returns:
+        genres - sorted numeric list of movie genres (list of int)
+    -------------------------------------------------------
+    """
+    s = Movie.genres_menu()
+    print(s)
+    genres = []
+    number = input("Enter a genre number (ENTER to quit): ")
+    while genres == [] or number != "":
+        r = False
+        for i in genres:
+            if int(number) == i:
+                r = True
+            
+        if number.isdigit() == False and number != "":
+            print("Error: not a positive number")
+        elif r == True:
+            print("Error: genre already chosen")
+        elif int(number) > len(Movie.GENRES)-1:
+            print("Error: input must be <= 10")
+        elif genres == [] and number == "":
+            print("Error: Must have at least one number inside list")
+        else:
+            integernumber = int(number)
+            genres.append(integernumber)
+        number = input("Enter a genre number (ENTER to quit): ")   
+                       
+    genres.sort()
+
+
+    return genres
+    
+#task file
+from Movie_utilities import read_genres
+
+genres = read_genres()
+print(genres)
+
+
+#output
+Genres
+ 0 science fiction
+ 1 fantasy
+ 2 drama
+ 3 romance
+ 4 comedy
+ 5 zombie
+ 6 action
+ 7 historical
+ 8 horror
+ 9 war
+10 mystery
+
+Enter a genre number (ENTER to quit): 5
+Enter a genre number (ENTER to quit): 5
+Error: genre already chosen
+Enter a genre number (ENTER to quit): 0
+Enter a genre number (ENTER to quit): 2
+Enter a genre number (ENTER to quit): 3
+Enter a genre number (ENTER to quit): 
+[0, 2, 3, 5]
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+def get_movie():
+    """
+    -------------------------------------------------------
+    Creates a Movie object by requesting data from a user.
+    Use: movie = get_movie()
+    -------------------------------------------------------
+    Returns:
+        movie - a Movie object based upon the user input (Movie).
+    -------------------------------------------------------
+    """
+    title = input("Enter a movie title: ")
+    year = int(input("Enter the year of release: "))
+    director = input("Enter the name of the director: ")
+    rating = float(input("Enter the rating of the movie: "))
+    genres = read_genres()
+    movie = Movie(title, year, director, rating, genres)
+
+
+    return movie
+
+#task file
+from Movie_utilities import get_movie
+
+movie = get_movie()
+print(movie)
+
+#output
+Enter a movie title: Spider man
+Enter the year of release: 2004
+Enter the name of the director: tom
+Enter the rating of the movie: 3.5
+Genres
+ 0 science fiction
+ 1 fantasy
+ 2 drama
+ 3 romance
+ 4 comedy
+ 5 zombie
+ 6 action
+ 7 historical
+ 8 horror
+ 9 war
+10 mystery
+
+Enter a genre number (ENTER to quit): 5
+Enter a genre number (ENTER to quit): 6
+Enter a genre number (ENTER to quit): 
+Title:    Spider man
+Year:     2004
+Director: tom
+Rating:   3.5
+Genres:   zombie,action
+
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+def read_movie(line):
+    """
+    -------------------------------------------------------
+    Creates and returns a Movie object from a line of formatted string data.
+    Use: movie = read_movie(line)
+    -------------------------------------------------------
+    Parameters:
+        line - a vertical bar-delimited line of movie data in the format
+          title|year|director|rating|genre codes (str)
+    Returns:
+        movie - a Movie object based upon the data from line (Movie)
+    -------------------------------------------------------
+    """
+    splitline = line.split("|")
+    title = splitline[0]
+    year = int(splitline[1])
+    director = splitline[2]
+    rating = float(splitline[3])
+    # genres
+    splitgenres = splitline[4].split(",")
+    genres = []
+    for i in splitgenres:
+        genres.append(int(i))
+
+    
+    movie = Movie(title, year, director, rating, genres)
+
+    return movie
+    
+#task file
+from Movie_utilities import read_movie
+
+line = input("Enter a movie line: ")
+movie = read_movie(line)
+print(movie)
+
+#output
+Enter a movie line: tom|2004|paul|4.5|0,3
+Title:    tom
+Year:     2004
+Director: paul
+Rating:   4.5
+Genres:   science fiction,romance
+-------------------------------------------------------
+t07
+-------------------------------------------------------
+def read_movies(fv):
+    """
+    -------------------------------------------------------
+    Reads a file of string data into a list of Movie objects.
+    Use: movies = read_movies(fv)
+    -------------------------------------------------------
+    Parameters:
+        fv - an already open file of movie data (file)
+    Returns:
+        movies - a list of Movie objects (list of Movie)
+    -------------------------------------------------------
+    """ #Dellamorte Dellamore|1994|Michele Soavi|7.2|3,4,5,8
+    movies = []
+    line = fv.readline()
+    while line != " ":
+        splittedline = line.split("|")
+        title = splittedline[0]
+        director = splittedline[2]
+        rating = float(splittedline[3])
+        year = int(splittedline[1])
+        splittedgenres = splittedline[4].split(",")
+        genres = []
+        for i in splittedgenres:
+            genres.append(int(i))
+        m1 = Movie(title, year, director, rating, genres)
+        movies.append(m1)
+        line = fv.readline()
+        
+
+    return movies
+    
+#task file
+from Movie_utilities import read_movies
+
+fv = open("movies.txt","r",encoding = "utf-8")
+movies = read_movies(fv)
+print(movies)
