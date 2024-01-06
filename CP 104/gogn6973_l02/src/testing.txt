@@ -1,0 +1,115 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+# Constants
+Freezing = 32
+# inputs
+Temperature_celsius = int(input("Enter a temperature in celsius: "))
+# Calculations
+# TODO:
+Fahrenheit = int(9 / 5 * Temperature_celsius + Freezing)
+# Outputs
+print("the (fahrenheit) temperature is:", Fahrenheit)
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+# Inputs
+Hourly_pay = float(input("enter your hourly pay: "))
+Hours_worked = float(input("enter how many hours you worked this week: "))
+
+# Calculations
+Total_pay_for_the_week = Hourly_pay * Hours_worked
+
+# outputs
+print("your total pay for the week is: $", Total_pay_for_the_week)
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+# Inputs
+Principal = int(input(" Enter Mortgage principal($): "))
+Numberofpayments = float(input(" Enter Number of years: "))
+Numberofpayments = float(Numberofpayments) * 12
+Interest = input("Enter Yearly interest rate(%): ")
+
+# Calculations
+Interest = float(Interest) / 100 / 12
+Monthlypayments = Principal * (Interest * (1 + Interest) **
+                               Numberofpayments) / ((1 + Interest)**Numberofpayments - 1)
+
+# Output
+print()
+print(f"The monthly payments are: ${Monthlypayments}")
+-------------------------------------------------------
+t07
+-------------------------------------------------------
+# Inputs
+Number_of_flyers = int(input("Enter the number of flyers: "))
+Number_of_Volunteers = int(input("Enter the number of volunteers: "))
+
+# Calculations
+Flyers_per_volunteer = Number_of_flyers // Number_of_Volunteers
+Flyers_left_over = Number_of_flyers % Number_of_Volunteers
+
+# Output
+print("Flyers per volunteer: ", Flyers_per_volunteer)
+print("Flyers left over: ", Flyers_left_over)
+-------------------------------------------------------
+t08
+-------------------------------------------------------
+
+-------------------------------------------------------
+t09
+-------------------------------------------------------
+
+-------------------------------------------------------
+t10
+-------------------------------------------------------
+
+-------------------------------------------------------
+t11
+-------------------------------------------------------
+# COnstants
+Profit_Percentage = 0.18
+# Inputs
+Projected_annual_sales = float(input("Enter the projected total sales: "))
+
+# Calculations
+Projected_profit = Projected_annual_sales * Profit_Percentage
+# Outputs
+print("The projected profit on sales of",
+      Projected_annual_sales, "is", Projected_profit)
+-------------------------------------------------------
+t12
+-------------------------------------------------------
+
+-------------------------------------------------------
+t13
+-------------------------------------------------------
+
+-------------------------------------------------------
+t14
+-------------------------------------------------------
+

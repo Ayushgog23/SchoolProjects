@@ -1,0 +1,181 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+def list_factors(num):
+    """
+   -------------------------------------------------------
+   Description: list factors takes in an integer greater than 0 and returns 
+   the factors of that integer in the form of a list
+   Use: factors = list_factors(num)
+   -------------------------------------------------------
+   Parameters:
+       num - a number greater than 0 (int)
+   Returns:
+       factors - returns a list of factors (int)
+   ------------------------------------------------------
+   """
+
+    factors = []
+    for i in range(1, num + 1):
+        if(num % i == 0):
+            factors.append(i)
+
+    factors.pop()
+
+    return factors
+    
+    
+#Task file
+# Imports
+from functions import list_factors
+
+num = int(input("Enter a number greater than 0:  "))
+factors = list_factors(num)
+print(f"{factors}")
+
+# different sets of inputs
+Enter a number greater than 0:  6
+[1, 2, 3]
+
+Enter a number greater than 0:  8
+[1, 2, 4]
+
+Enter a number greater than 0:  10
+[1, 2, 5]
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+def list_positives():
+    """
+    -------------------------------------------------------
+    Gets a list of positive numbers from a user.
+    Negative numbers are ignored. Enter 0 to stop entries.
+    Use: numbers = list_positives()
+    -------------------------------------------------------
+    Returns:
+        numbers - A list of positive integers (list of int)
+    ------------------------------------------------------
+    """
+    list = int(input("Enter a series of positive numbers (int): "))
+    numbers = []
+    while list != 0:
+        if list > 0:
+            numbers.append(list)
+        list = int(input("Enter a series of positive numbers (int): "))
+
+    return numbers
+
+
+#Task file
+# Imports
+from functions import list_positives
+
+numbers = list_positives()
+print(f"{numbers}")
+
+
+#3 different sets of inputs
+Enter a series of positive numbers (int): 5
+Enter a series of positive numbers (int): 3
+Enter a series of positive numbers (int): 0
+[5, 3]
+
+Enter a series of positive numbers (int): 10
+Enter a series of positive numbers (int): 5
+Enter a series of positive numbers (int): 5
+Enter a series of positive numbers (int): -1
+Enter a series of positive numbers (int): 0
+[10, 5, 5]
+
+Enter a series of positive numbers (int): 3
+Enter a series of positive numbers (int): 3
+Enter a series of positive numbers (int): 0
+[3, 3]
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+def list_indexes(values, target):
+    """
+    -------------------------------------------------------
+    Finds the indexes of target in values.
+    Use: indexes = list_indexes(values, target)
+    -------------------------------------------------------
+    Parameters:
+        values - list of value (list of int)
+        target - value to look for in num_list (int)
+    Returns:
+        locations - list of indexes of target (list of int)
+    -------------------------------------------------------
+    """
+    indexes = []
+
+    for i in range(len(values)):
+        if values[i] == target:
+            indexes.append(i)
+
+    return indexes
+
+
+#Task file
+# Imports
+from functions import list_indexes
+
+print(list_indexes([5, 1, 8, 9, 5, 2, 5, 3], 5))
+
+
+#output
+[0, 4, 6]
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+def subtract_lists(minuend, subtrahend):
+    """
+    -------------------------------------------------------
+    Updates the list minuend removing from it the values in subtrahend.
+    i.e. the values in the first list that appear in the second list
+    are not included in the updated list.
+    subtrahend is unchanged
+    Use: subtract_lists(minuend, subtrahend)
+    -------------------------------------------------------
+    Parameters:
+        minuend - a list of values (list)
+        subtrahend - a list of values to remove from minuend (list)
+    Returns:
+        None
+    ------------------------------------------------------
+    """
+    index = []
+    
+    count = 0
+    d = len(minuend)
+    a = len(subtrahend)
+    for i in range(a):
+        for v in range(d):
+            if minuend[v] == subtrahend[i]:
+                index.append(v)
+    for j in index:
+        c = j - count
+        minuend.pop(c)
+        count = count + 1
+
+
+#Task file
+# Imports
+from functions import subtract_lists
+
+print(subtract_lists([5, 1, 8, 9, 5, 2, 5, 3], 5))
+
+
+

@@ -1,0 +1,227 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+def get_digit_name(n):
+    """
+    -------------------------------------------------------
+    Returns the name of a digit given its number.
+    Use: name = get_digit_name(n)
+    -------------------------------------------------------
+    Parameters:
+        n - digit number (int 0 <= n <= 9)
+    Returns:
+        name - matching digit, 0 = "zero", 9 = "nine" (str)
+    -------------------------------------------------------
+    """
+
+    digit_names = ["zero", "one", "two", "three",
+                   "four", "five", "six", "seven", "eight", "nine"]
+
+    name = digit_names[n]
+
+    return name
+    
+    
+#task file
+# Imports
+from functions import get_digit_name
+
+n = int(input("Enter a digit number: "))
+name = get_digit_name(n)
+print(f"{name}")
+
+
+#trial
+Enter a digit number: 5
+five
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+import random
+
+
+def generate_integer_list(n, low, high):
+    """
+    -------------------------------------------------------
+    Generates a list of random integers.
+    Requires import: from random import randint
+    Use: values = generate_integer_list(n, low, high)
+    -------------------------------------------------------
+    Parameters:
+        n - number of values to generate (int, > 0)
+        low - low value range (int)
+        high - high value range (int, > low)
+    Returns:
+        values - a list of random integers (list of int)
+    -------------------------------------------------------
+    """
+
+    values = []
+    for i in range(n):
+        num = random.randint(low, high)
+        values.append(num)
+        i *= 1
+
+    return values
+    
+    
+#task file
+from functions import generate_integer_list
+
+n = int(input("Enter the number of values to generate: "))
+low = int(input("Enter the low value range: "))
+high = int(input("Enter the high value range: "))
+values = generate_integer_list(n, low, high)
+print(f"{values}")
+
+
+#trial
+Enter the number of values to generate: 5
+Enter the low value range: 1
+Enter the high value range: 10
+[1, 10, 8, 9, 5]
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+def list_stats(values):
+    """
+    -------------------------------------------------------
+    Returns statistics about values in a list.
+    values has at least one element.
+    Use: smallest, largest, total, average = list_stats(values)
+    -------------------------------------------------------
+    Parameters:
+        values - a list of values (list of float)
+    Returns:
+        smallest - the smallest number in values (float)
+        largest - the largest number in values (float)
+        total - total of numbers in list (float)
+        average - the average numbers in values (float)
+    -------------------------------------------------------
+    """
+    largest = 0
+    smallest = 0
+    total = 0
+    for i in range(len(values)):
+        num = values[i]
+        if i == 0 or num > largest:
+            largest = num
+        if i == 0 or num < smallest:
+            smallest = num
+        total += num
+    average = total / len(values)
+    return smallest, largest, total, average
+
+
+#task file
+from functions import list_stats
+from functions import generate_integer_list
+
+values = generate_integer_list(10, -100, 100)
+smallest, largest, total, average = list_stats(values)
+print(f"Values: {values}")
+print(f"Smallest value: {smallest}")
+print(f"Largest value: {largest}")
+print(f"Total: {total}")
+print(f"Average: {average}")
+
+
+#trial
+Values: [-47, -99, -81, -27, 11, 1, 79, -63, 42, 56]
+Smallest value: -99
+Largest value: 79
+Total: -128
+Average: -12.8
+
+-------------------------------------------------------
+t07
+-------------------------------------------------------
+
+-------------------------------------------------------
+t08
+-------------------------------------------------------
+
+-------------------------------------------------------
+t09
+-------------------------------------------------------
+
+-------------------------------------------------------
+t10
+-------------------------------------------------------
+def min_search(values):
+    """
+    -------------------------------------------------------
+    Searches through values for the minimum value(s) and returns a
+    list of the indexes of those values. (Assumes values has at least
+    one element.)
+    User: indexes = min_search(values)
+    -------------------------------------------------------
+    Parameters:
+        values - a list of values (list of *).
+    Returns:
+        indexes - a list of indexes of the minimum values in
+            values (list of int).
+    -------------------------------------------------------
+    """
+    index = {}
+    minimum = values[0]
+    for i in values:
+        if i < minimum:
+            minimum = i
+            indexes = index.append(minimum)
+
+    return indexes
+
+
+#task file
+# Imports
+from functions import min_search
+
+
+values = [-12, 5, 6, 12]
+indexes = min_search(values)
+print(f"{indexes}")
+
+
+-------------------------------------------------------
+t11
+-------------------------------------------------------
+
+-------------------------------------------------------
+t12
+-------------------------------------------------------
+
+-------------------------------------------------------
+t13
+-------------------------------------------------------
+
+-------------------------------------------------------
+t14
+-------------------------------------------------------
+
+-------------------------------------------------------
+t15
+-------------------------------------------------------

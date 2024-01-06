@@ -1,0 +1,212 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+# Constants
+ANNUALTAX = 0.185
+# Inputs
+Total_sales = float(input("Enter the total sales: "))
+# Calculations
+Tax = ANNUALTAX * Total_sales
+# outputs
+print()
+print("Projected Tax Report:")
+print(f"total sales: $ {Total_sales}")
+print(f"Annual tax:  % 18.50")
+print()
+print(f"tax: $ {Tax:.2f}")
+
+
+
+3 sets of inputs:
+
+Enter the total sales: 33000
+
+Projected Tax Report:
+total sales: $ 33000.0
+Annual tax:  % 18.50
+
+tax: $ 6105.00
+
+
+Enter the total sales: 500000
+
+Projected Tax Report:
+total sales: $ 500000.0
+Annual tax:  % 18.50
+
+tax: $ 92500.00
+
+
+
+Enter the total sales: 3000
+
+Projected Tax Report:
+total sales: $ 3000.0
+Annual tax:  % 18.50
+
+tax: $ 555.00
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+# Inputs
+Number = int(input("Enter a positive digit number: "))
+# Calculations
+One_digit = int(Number % 10)
+Other_digits = int(Number // 10)
+Product = int(One_digit * Other_digits)
+# Output
+print(f"The product of the digits {Number} is {Product}")
+
+
+3 sets of inputs:
+
+Enter a positive digit number: 24
+The product of the digits 24 is 8
+
+Enter a positive digit number: 10
+The product of the digits 10 is 0
+
+Enter a positive digit number: 58
+The product of the digits 58 is 40
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+# Constants
+DAY_DIVIDE = 1000000
+MONTH_DIVIDE = 10000
+# Input
+Date = int(input("Enter a date in the format (DDMMYYYY): "))
+# Calculations
+day = Date // DAY_DIVIDE
+month = Date % DAY_DIVIDE // MONTH_DIVIDE
+year = Date % MONTH_DIVIDE
+
+print(f"The reformatted date is: {year:04}/{month:02}/{day:02}")
+
+
+
+3 sets of inputs:
+Enter a date in the format (DDMMYYYY): 23072004
+The reformatted date is: 2004/07/23
+
+Enter a date in the format (DDMMYYYY): 09122020
+The reformatted date is: 2020/12/09
+
+Enter a date in the format (DDMMYYYY): 02111907
+The reformatted date is: 1907/11/02
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+# inputs
+N_Cake = int(input("Enter the number of pieces of cake: "))
+N_Goers = int(input("Enter the number of party goers: "))
+# Calculations
+Pieces_Per_Goer = int(N_Cake // N_Goers)
+Remainder = N_Cake % N_Goers
+# Output
+print(f"Pieces of cake per party goer: {Pieces_Per_Goer}")
+print(f"Cake left over: {Remainder}")
+
+
+
+3 sets of inputs:
+Enter the number of pieces of cake: 13
+Enter the number of party goers: 2
+Pieces of cake per party goer: 6
+Cake left over: 1
+
+Enter the number of pieces of cake: 5
+Enter the number of party goers: 5
+Pieces of cake per party goer: 1
+Cake left over: 0
+
+Enter the number of pieces of cake: 11
+Enter the number of party goers: 6
+Pieces of cake per party goer: 1
+Cake left over: 5
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+# inputs
+F_length = float(input("Enter the length of the foundation: (m) "))
+F_width = float(input("Enter the width of the foundation: (m) "))
+F_height = float(input("Enter the height of the foundation: (m) "))
+Wall_Height = float(input("Enter the wall height: (m) "))
+Cost_concrete = int(input("Enter the cost of concrete: ($/m^3) "))
+Cost_bricks = int(input("Enter the cost of bricks: ($/m^2) "))
+
+# Calculations
+Concrete_For_Foundation = F_length * F_width * F_height
+Cost_total_Concrete = Concrete_For_Foundation * Cost_concrete
+
+Bricks1 = F_length * Wall_Height
+Times2one = Bricks1 * 2
+Bricks2 = F_width * Wall_Height
+Times2two = Bricks2 * 2
+Bricks_For_Walls = Times2one + Times2two
+Cost_total_Bricks = Bricks_For_Walls * Cost_bricks
+
+Total_Cost = Cost_total_Concrete + Cost_total_Bricks
+
+# Outputs
+print()
+print(f"Concrete needed for foundation: (m^3) {Concrete_For_Foundation:.2f}")
+print(f"Cost of concrete: $ {Cost_total_Concrete:.2f}")
+print(f"Bricks neede for walls: (m^2) {Bricks_For_Walls:.2f}")
+print(f"Cost of bricks: $ {Cost_total_Bricks:,.2f}")
+print(f"Total cost is: $ {Total_Cost:,.2f}")
+
+
+
+3 sets of inputs:
+Enter the length of the foundation: (m) 6.0
+Enter the width of the foundation: (m) 5.0
+Enter the height of the foundation: (m) 2.5
+Enter the wall height: (m) 24
+Enter the cost of concrete: ($/m^3) 180
+Enter the cost of bricks: ($/m^2) 85
+
+Concrete needed for foundation: (m^3) 75.00
+Cost of concrete: $ 13500.00
+Bricks neede for walls: (m^2) 528.00
+Cost of bricks: $ 44,880.00
+Total cost is: $ 58,380.00
+
+
+Enter the length of the foundation: (m) 5.6
+Enter the width of the foundation: (m) 6.0
+Enter the height of the foundation: (m) 2.0
+Enter the wall height: (m) 20.0
+Enter the cost of concrete: ($/m^3) 180
+Enter the cost of bricks: ($/m^2) 94
+
+Concrete needed for foundation: (m^3) 67.20
+Cost of concrete: $ 12096.00
+Bricks neede for walls: (m^2) 464.00
+Cost of bricks: $ 43,616.00
+Total cost is: $ 55,712.00
+
+
+Enter the length of the foundation: (m) 4.0
+Enter the width of the foundation: (m) 8.0
+Enter the height of the foundation: (m) 0.6
+Enter the wall height: (m) 2.5
+Enter the cost of concrete: ($/m^3) 200
+Enter the cost of bricks: ($/m^2) 95
+
+Concrete needed for foundation: (m^3) 19.20
+Cost of concrete: $ 3840.00
+Bricks neede for walls: (m^2) 60.00
+Cost of bricks: $ 5,700.00
+Total cost is: $ 9,540.00
+

@@ -1,0 +1,260 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+def feet_to_acres(square_footage):
+    """
+    -------------------------------------------------------
+    Converts square footage to acres.
+    Use: acres = feet_to_acres(square_footage)
+    -------------------------------------------------------
+    Parameters:
+        square_footage - area in square feet (float >= 0)
+    Returns:
+        acres - square_footage in acres (float)
+    ------------------------------------------------------
+    """
+    acres = square_footage / SQUAREFEET_PER_ACRE
+    return acres
+    
+# task file
+# Imports
+from functions import feet_to_acres
+
+square_footage = float(input("Enter area in square feet (float >= 0): "))
+acres = feet_to_acres(square_footage)
+print(f"{acres:.2f} acres is equivalent to {square_footage} square feet.")
+
+
+#3 diferent sets of inputs
+Enter area in square feet (float >= 0): 5000
+0.11 acres is equivalent to 5000.0 square feet.
+
+Enter area in square feet (float >= 0): 100001
+2.30 acres is equivalent to 100001.0 square feet.
+
+Enter area in square feet (float >= 0): 30000
+0.69 acres is equivalent to 30000.0 square feet.
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+def mow_lawn(width, length, speed):
+    """
+    -------------------------------------------------------
+    Determines how long it takes to mow a rectangular lawn.
+    Use: time = mow_lawn(width, length, speed)
+    -------------------------------------------------------
+    Parameters:
+        width - width of a lawn in metres (float > 0)
+        length - length of a lawn in metres (float > 0)
+        speed - square metres cut per minute (float > 0)
+    Returns:
+        time - time required to mow the lawn in minutes (float)
+    ------------------------------------------------------
+    """
+    area = width * length
+    time = area / speed
+    return time
+    
+# Task file
+# Imports
+from functions import mow_lawn
+
+width = float(input("width of a lawn in metres (float > 0): "))
+length = float(input("length of a lawn in metres (float > 0): "))
+speed = float(input("square metres cut per minute (float > 0): "))
+time = mow_lawn(width, length, speed)
+print(f"Mowing the lawn takes {time} minutes")
+
+
+
+#3 different sets of inputs
+width of a lawn in metres (float > 0): 55.5
+length of a lawn in metres (float > 0): 20.4
+square metres cut per minute (float > 0): 4
+Mowing the lawn takes 283.04999999999995 minutes
+
+width of a lawn in metres (float > 0): 60
+length of a lawn in metres (float > 0): 40
+square metres cut per minute (float > 0): 3
+Mowing the lawn takes 800.0 minutes
+
+width of a lawn in metres (float > 0): 7
+length of a lawn in metres (float > 0): 5
+square metres cut per minute (float > 0): 2
+Mowing the lawn takes 17.5 minutes
+
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+def date_extract(date_number):
+    """
+    -------------------------------------------------------
+    Extracts the year, month, and day from a date number in the format MMDDYYYY.
+    Use: year, month, day = date_extract(date_number)
+    -------------------------------------------------------
+    Parameters:
+        date_number - a date number in the format MMDDYYYY (int > 0)
+    Returns:
+        year - year portion of date_number (int)
+        month - month portion of date_number (int)
+        day - day portion of date_number (int)
+    ------------------------------------------------------
+    """
+    Month_Divide = 1000000
+    Day_Divide = 10000
+    month = date_number // Month_Divide
+    year = date_number % Month_Divide // Day_Divide
+    day = date_number % Day_Divide
+    return day, month, year
+
+
+#task file
+# Imports
+from functions import date_extract
+
+date_number = int(input("A date number in the format MMDDYYYY (int > 0):  "))
+year, month, day = date_extract(date_number)
+print(f"The reformatted date is: {year}/{month}/{day}")
+
+
+#3 different sets of inputs
+A date number in the format MMDDYYYY (int > 0):  10252004
+The reformatted date is: 2004/10/25
+
+A date number in the format MMDDYYYY (int > 0):  04042015
+The reformatted date is: 2015/4/4
+
+A date number in the format MMDDYYYY (int > 0):  09302022
+The reformatted date is: 2022/9/30
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+def multiply_fractions(num1, denom1, num2, denom2):
+    """
+    -------------------------------------------------------
+    Multiplies two fractions together and returns the results
+    Use: numerator, denominator, product = multiply_fractions(num1, denom1, num2, denom2)
+    -------------------------------------------------------
+    Parameters:
+        num1 - numerator of the first fraction (int)
+        denom1 - denominator of the first fraction (int)
+        num2 - numerator of the second fraction (int)
+        denom2 - denominator of the second fraction (int)
+    Returns:
+        numerator - numerator of the resulting fraction (int)
+        denominator - denominator of the resulting fraction  (int)
+        product - numerator divided by denominator (float)
+    ------------------------------------------------------
+    """
+    numerator = num1 * num2
+    denominator = denom1 * denom2
+    product = numerator / denominator
+    return numerator, denominator, product
+
+
+# task file
+from functions import multiply_fractions
+
+num1 = int(input("Numerator of the first fraction (int): "))
+denom1 = int(input("Denominator of the first fraction(int): "))
+num2 = int(input("Numerator of the second fraction(int): "))
+denom2 = int(input("Denominator of the second fraction(int): "))
+numerator, denominator, product = multiply_fractions(
+    num1, denom1, num2, denom2)
+print(f"result: {numerator}/{denominator} = {product:2f}")
+
+
+#3 different sets of inputs
+Numerator of the first fraction (int): 1
+Denominator of the first fraction(int): 3
+Numerator of the second fraction(int): 4
+Denominator of the second fraction(int): 5
+result: 4/15 = 0.266667
+
+Numerator of the first fraction (int): 5
+Denominator of the first fraction(int): 5
+Numerator of the second fraction(int): 5
+Denominator of the second fraction(int): 5
+result: 25/25 = 1.000000
+
+Numerator of the first fraction (int): 0
+Denominator of the first fraction(int): 2
+Numerator of the second fraction(int): 1
+Denominator of the second fraction(int): 6
+result: 0/12 = 0.000000
+
+
+    
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+def math_quiz():
+    """
+    -------------------------------------------------------
+    Gives simple math quizes
+    Use: expected, your_answer = math_quiz()
+    -------------------------------------------------------
+    Parameters:
+    Returns:
+    ------------------------------------------------------
+    """
+    Num1 = random.randint(0, 999)
+    Num2 = random.randint(0, 999)
+    print(f"  {Num1}")
+    print(f"+ {Num2}")
+    print()
+    expected = Num1 + Num2
+    your_answer = int(input("Enter your answer: "))
+    print()
+    print(f"Your answer: {your_answer}")
+    print(f"Expected: {expected}")
+    return your_answer, expected, Num1, Num2
+
+
+
+# task file
+# Imports
+from functions import math_quiz
+
+expected, your_answer, Num1, Num2 = math_quiz()
+
+
+#3 different sets of inputs
+
+  154
++ 269
+
+Enter your answer: 5
+
+Your answer: 5
+Expected: 423
+
+
+  872
++ 643
+
+Enter your answer: 53
+
+Your answer: 53
+Expected: 1515
+
+
+  216
++ 78
+
+Enter your answer: 4
+
+Your answer: 4
+Expected: 294

@@ -1,0 +1,231 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+def customer_best(fh):
+    """
+    -------------------------------------------------------
+    Find the customer with the largest balance.
+    Assumes file is not empty.
+    Use: result = customer_best(fh)
+    -------------------------------------------------------
+    Parameters:
+        fh - file to search (file handle - already open for reading)
+    Returns:
+        result - the record with the greatest balance (list)
+    -------------------------------------------------------
+    """
+
+    numbers = []
+    for line in fh:
+        data = line.split(",")
+        numbers.append(data[3])
+
+        for j in numbers:
+            if float(data[3]) + 1 == j:
+                result = data
+    return result
+    
+
+#taskfile
+# Imports
+from functions import customer_best
+
+filename = "customers.txt"
+fh = open(filename, "r", encoding="utf-8")
+result = customer_best(fh)
+fh.close()
+print(f"{result}")
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+t07
+-------------------------------------------------------
+
+-------------------------------------------------------
+t08
+-------------------------------------------------------
+def append_increment(fh):
+    """
+    -------------------------------------------------------
+    Appends a number to the end of the fh. The number appended
+    is the last number in the file plus 1.
+    Assumes file is not empty.
+    Use: num = append_increment(fh)
+    -------------------------------------------------------
+    Parameters:
+        fh - file to search (file handle - already open for reading/writing)
+    Returns:
+        num - the number appended to the file (int)
+    ------------------------------------------------------
+    """
+
+    line = fh.readline().strip()
+    number = ""
+    while line != "":
+        number = int(line) + 1
+        line = fh.readline().strip()
+    fh.write(f"{number}\n")
+
+    return number
+
+
+#task file
+from functions import append_increment
+
+filename = "numbers.txt"
+fh = open(filename, "r+", encoding="utf-8")
+number = append_increment(fh)
+fh.close()
+print(f"{number}\n")
+-------------------------------------------------------
+t09
+-------------------------------------------------------
+
+-------------------------------------------------------
+t10
+-------------------------------------------------------
+def count_frequency_word(fh, word):
+    """
+    -------------------------------------------------------
+    Counts the number of appearances of word in fh.
+    Case is significant - line in file must match word in case.
+    Use: count = count_frequency_word(fh, word)
+    -------------------------------------------------------
+    Parameters:
+        fh - file to search (file handle - already open for reading)
+        word - the word to search for it in fh (str)
+    Returns:
+        count - the number of appearance of word in fh (int)
+    ------------------------------------------------------
+    """
+
+    count = 0
+    line = fh.readline().strip()
+    while line != "":
+        if line == word:
+            count += 1
+
+        line = fh.readline().strip()
+    return count
+
+
+#task file
+# Imports
+from functions import count_frequency_word
+
+word = input("What word you are searching for: ")
+filename = "words.txt"
+fh = open(filename, "r", encoding="utf-8")
+count = count_frequency_word(fh, word)
+fh.close()
+print(f"{word} appears {count} times")
+-------------------------------------------------------
+t11
+-------------------------------------------------------
+
+-------------------------------------------------------
+t12
+-------------------------------------------------------
+def find_shortest(fh):
+    """
+    -------------------------------------------------------
+    Finds the first word with shortest length in fh.
+    Assumes file is not empty.
+    Use: word = find_shortest(fh)
+    -------------------------------------------------------
+    Parameters:
+        fh - file to search (file handle - already open for reading)
+    Returns:
+        word - the first word with the shortest length in fh (str)
+    ------------------------------------------------------
+    """
+    shortest = fh.readline()
+    for line in fh:
+        word = line.strip()
+        if len(word) < len(shortest):
+            shortest = word
+    return shortest
+
+
+#task file
+# Imports
+from functions import find_shortest
+
+filename = "words.txt"
+fh = open(filename, "r", encoding="utf-8")
+shortest = find_shortest(fh)
+fh.close()
+print(f"The shortest word is {shortest}")
+
+-------------------------------------------------------
+t13
+-------------------------------------------------------
+def file_copy(fh_1, fh_2):
+    """
+    -------------------------------------------------------
+    Copies the contents of fh_1 to fh_2.
+    Any contents of fh_2 are overwritten.
+    Use: file_copy(fh_1, fh_2)
+    -------------------------------------------------------
+    Parameters:
+        fh_1 - source file (file handle - already open for reading)
+        fh_2 - target file (file handle - already open for writing)
+    Returns:
+        None
+    ------------------------------------------------------
+    """
+    for line in fh_1:
+        fh_2.write(line)
+
+    return None
+    
+    
+#task file
+# Imports
+from functions import file_copy
+
+filename = "words.txt"
+fh_1 = open(filename, "r", encoding="utf-8")
+filename2 = "new_words.txt"
+fh_2 = open(filename2, "w", encoding="utf-8")
+file_copy(fh_1, fh_2)
+fh_1.close()
+fh_2.close()
+print(f"done")
+-------------------------------------------------------
+t14
+-------------------------------------------------------
+
+-------------------------------------------------------
+t15
+-------------------------------------------------------

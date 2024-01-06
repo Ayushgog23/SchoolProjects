@@ -1,0 +1,253 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+def area(radius):
+    """
+    -------------------------------------------------------
+    Calculates and returns area of a circle.
+    Use: ar = area(radius)
+    -------------------------------------------------------
+    Parameters:
+        radius - radius of a circle (float >= 0)
+    Returns:
+        ar - area of a circle (float)
+    ------------------------------------------------------
+    """
+    ar = pi * radius ** 2
+    print(f"The area of a circle is: {ar}")
+    return ar
+
+
+
+
+from functions import area
+
+# inputs
+radius = float(input("enter the radius: "))
+# function calls
+area(radius)
+
+
+Running the program:
+enter the radius: 5
+The area of a circle is: 78.53981633974483
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+def pythag(s1, s2):
+    """
+    -------------------------------------------------------
+    Calculates and returns the radius, diameter, circumference,
+    and area of circle defined by a right triangle.
+    Use: radius, diam, circ, area = pythag(s1, s2)
+    -------------------------------------------------------
+    Parameters:
+        s1 - length of side 1 of a right triangle (float > 0)
+        s2 - length of side 2 of a right triangle (float > 0)
+    Returns:
+        radius - radius of the resulting circle (float)
+        diam - diameter of the resulting circle (float)
+        circ - circumference of the resulting circle (float)
+        area - area of the resulting circle (float)
+    ------------------------------------------------------
+    """
+    # radius
+    radius_inside_calculations = s1 ** 2 + s2 ** 2
+    r = sqrt(radius_inside_calculations)
+    # Diameter
+    Diameter = r * 2
+    # Circumference
+    Circ = pi * Diameter
+    # area
+    Area = pi * r ** 2
+    print(f"""Radius is: {r}, Diameter is: {Diameter},
+    Circumference is {Circ}, Area is {Area}""")
+    return r, Diameter, Circ, Area
+
+
+
+
+from functions import pythag
+
+s1 = float(input("Enter side 1: "))
+s2 = float(input("Enter side 2: "))
+# Function call
+radius, diam, circ, area = pythag(s1, s2)
+
+
+Running the program: 
+Enter side 1: 4.0
+Enter side 2: 5.0
+Radius is: 6.4031242374328485, Diameter is: 12.806248474865697,
+    Circumference is 40.23201612868357, Area is 128.8052987971815
+
+-------------------------------------------------------
+t07
+-------------------------------------------------------
+
+-------------------------------------------------------
+t08
+-------------------------------------------------------
+
+-------------------------------------------------------
+t09
+-------------------------------------------------------
+def fraction_product(num1, den1, num2, den2):
+    """
+    -------------------------------------------------------
+    Calculates and returns fraction values.
+    Use: num, den, product = fraction_product(num1, den1, num2, den2)
+    -------------------------------------------------------
+    Parameters:
+        num1 - numerator of first fraction (int)
+        den1 - denominator of first fraction (int != 0)
+        num2 - numerator of second fraction (int)
+        den2 - denominator of second fraction (int != 0)
+    Returns:
+        num - numerator of product (int)
+        den - denominator of product (int)
+        product - num / den (float)
+    -------------------------------------------------------
+    """
+    # Calculations
+    Num_P = num1 * num2
+    Denom_P = den1 * den2
+    product = Num_P / Denom_P
+    # Print
+    print(f"""The numerator of product is {Num_P},
+    The denominator of product is {Denom_P}, the product is {product:.2f}""")
+    return Num_P, Denom_P, product
+
+
+
+
+
+from functions import fraction_product
+# input
+num1 = int(input("Enter the numerator of fraction 1: "))
+den1 = int(input("Enter the denominator of fraction 1: "))
+num2 = int(input("Enter the numerator of fraction 2: "))
+den2 = int(input("Enter the denominator of fraction 2: "))
+# Function call
+num, den, product = fraction_product(num1, den1, num2, den2)
+
+
+Running the program:
+Enter the numerator of fraction 1: 2
+Enter the denominator of fraction 1: 2
+Enter the numerator of fraction 2: 2
+Enter the denominator of fraction 2: 5
+The numerator of product is 4,
+    The denominator of product is 10, the product is 0.40
+-------------------------------------------------------
+t10
+-------------------------------------------------------
+
+-------------------------------------------------------
+t11
+-------------------------------------------------------
+
+-------------------------------------------------------
+t12
+-------------------------------------------------------
+
+-------------------------------------------------------
+t13
+-------------------------------------------------------
+def f_to_c(fahrenheit):
+    """
+    -------------------------------------------------------
+    Converts temperatures in fahrenheit to celsius.
+    Use: celsius = f_to_c(fahrenheit)
+    -------------------------------------------------------
+    Parameters:
+        fahrenheit - temperature in fahrenheit (int >= -459)
+    Returns:
+        celsius - equivalent to celsius (float)
+    -------------------------------------------------------
+    """
+    # calculations
+    Brackets = fahrenheit - 32
+    F_to_C = 5 / 9 * Brackets
+    # print
+    print(f"the temperature in celsius is: {F_to_C:.2f}")
+    return F_to_C
+
+
+from functions import f_to_c
+# inputs
+F = int(input("Enter a Temperature in fahrenheit: "))
+# Function call
+celsius = f_to_c(F)
+
+
+Running the program:
+Enter a Temperature in fahrenheit: 70
+the temperature in celsius is: 21.11
+-------------------------------------------------------
+t14
+-------------------------------------------------------
+def time_values(SECONDS):
+    """
+    -------------------------------------------------------
+    Returns seconds in different formats.
+    Use: days, hours, minutes = time_values(seconds)
+    -------------------------------------------------------
+    Parameters:
+        seconds - total seconds (int >= 0)
+    Returns:
+        days - number of days in total_seconds (int >= 0)
+        hours - number of hours in total_seconds (int >= 0)
+        minutes - number of minutes in total_seconds (int >= 0)
+    -------------------------------------------------------
+    """
+    # Calculations
+    MINUTES = SECONDS * 0.0166667
+    HOURS = MINUTES * 0.0166667
+    DAYS = HOURS * 0.0416667
+    # print
+    print(f"minutes: {MINUTES}, hours: {HOURS}, days: {DAYS}")
+    return MINUTES, HOURS, DAYS
+
+
+
+
+from functions import time_values
+# inputs
+SECONDS = int(input("Enter a time in seconds: "))
+# Function Call
+DAYS, HOURS, MINUTES = time_values(SECONDS)
+
+
+Running the program:
+Enter a time in seconds: 957000
+minutes: 15950.0319, hours: 265.83439666773, days: 11.076442055635306
+-------------------------------------------------------
+t15
+-------------------------------------------------------

@@ -1,0 +1,305 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Ayush Gogne
+ID:      169026973
+Email:   gogn6973@mylaurier.ca
+Version: 2022-09-22
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+def generate_matrix_num(rows, cols, low, high, value_type):
+    """
+    -------------------------------------------------------
+    Generates a 2D list of numbers of the given type, 'float' or 'int'.
+    (To generate random float number use random.uniform and to
+    generate random integer number use random.randint)
+    Use: matrix = generate_matrix_num(rows, cols, low, high, value_type)
+    -------------------------------------------------------
+    Parameters:
+        rows - number of rows in the list (int > 0)
+        cols - number of columns (int > 0)
+        low - low value of range (float)
+        high - high value of range (float > low)
+        value_type - type of values in the list, 'float' or 'int' (str)
+    Returns:
+        matrix - a 2D list of random numbers (2D list of float/int)
+    -------------------------------------------------------
+    """
+
+    matrix = []
+    random_float = random.uniform(low, high)
+    random_int = random.randint(low, high)
+
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            if value_type == "float":
+                row.append(random_float)
+            elif value_type == "int":
+                row.append(random_int)
+        matrix.append(row)
+
+    return matrix
+
+
+#Task file
+from functions import generate_matrix_num
+
+rows = int(input("Enter the number of rows in the matrix: "))
+cols = int(input("Enter the number of cols in the matrix: "))
+low = float(input("Enter the low value of the range: "))
+high = float(input("Enter the high value of the range: "))
+value_type = input("Enter the value type you want (int)(float): ")
+
+matrix = generate_matrix_num(rows, cols, low, high, value_type)
+print(f"{matrix}")
+
+
+
+
+#testing
+Enter the number of rows in the matrix: 3
+Enter the number of cols in the matrix: 4
+Enter the low value of the range: 1
+Enter the high value of the range: 10
+Enter the value type you want (int)(float): int
+[[2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]]
+
+
+
+
+
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+def generate_matrix_char(rows, cols):
+    """
+    -------------------------------------------------------
+    Generates a 2D list of random lower case letter ('a' - 'z') values
+    Use: matrix = generate_matrix_char(rows, cols)
+    -------------------------------------------------------
+    Parameters:
+        rows - number of rows in the generated matrix (int > 0)
+        cols - number of columns in the generated matrix (int > 0)
+    Returns:
+        matrix - a 2D list of random characters (2D list of str)
+    -------------------------------------------------------
+    """
+    matrix = []
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            row.append(random.choice(string.ascii_letters))
+        matrix.append(row)
+    return matrix
+
+
+
+#task file
+from functions import generate_matrix_char
+rows = int(input("Enter the number of rows in the matrix: "))
+cols = int(input("Enter the number of columns in the matrix: "))
+
+matrix = generate_matrix_char(rows, cols)
+
+print(f"{matrix}")
+
+
+
+
+
+#testing
+Enter the number of rows in the matrix: 3
+Enter the number of columns in the matrix: 4
+[['t', 'R', 'L', 'h'], ['A', 'p', 'H', 'B'], ['i', 'q', 'I', 'm']]
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+def matrix_stats(matrix):
+    """
+    -------------------------------------------------------
+    Returns statistics on a 2D list.
+        Use: smallest, largest, total, average = matrix_stats(matrix)
+    -------------------------------------------------------
+    Parameters:
+        matrix - a 2D list of numbers (2D list of float/int)
+    Returns:
+        smallest - the smallest number in matrix (float/int)
+        largest - the largest number in matrix (float/int)
+        total - the total of the numbers in matrix (float/int)
+        average - the average of numbers in matrix (float/int)
+    -------------------------------------------------------
+    """
+
+    stats_list = []
+    total = 0
+    count = 0
+    for i in matrix:
+        for j in i:
+            stats_list.append(j)
+
+    stats_list.sort()
+    smallest = stats_list[0]
+    largest = stats_list[-1]
+
+    for k in stats_list:
+        total += k
+        count += 1
+
+    average = total / count
+
+    return smallest, largest, total, average
+
+
+
+#task file
+# Imports
+from functions import matrix_stats
+
+matrix = [[2, 0, -1, 1], [10, 4, -5, 9], [-6, 3, 6, 0]]
+smallest, largest, total, average = matrix_stats(matrix)
+print(f"({smallest},{largest},{total},{average})")
+
+
+#testing
+(-6,10,23,1.9166666666666667)
+
+-------------------------------------------------------
+t07
+-------------------------------------------------------
+
+-------------------------------------------------------
+t08
+-------------------------------------------------------
+def find_less(matrix, n):
+    """
+    -------------------------------------------------------
+    Finds the location [row, column] of the first value in matrix
+    that is smaller than a target value, n. If there is no such
+    number in matrix, it should return an empty list.
+    Use: loc = find_less(matrix, n)
+    -------------------------------------------------------
+    Parameters:
+        matrix - a 2D list of numbers (2D list)
+        n - the target value (float)
+    Returns:
+        loc - a list of the row and column location of
+            the first value smaller than n in values,
+            an empty list otherwise (list of int)
+    -------------------------------------------------------
+    """
+    loc = []
+    rows = 0
+    cols = 0
+    for i in range(len(matrix)):
+        rows = matrix[i]
+        for j in range(len(rows)):
+            cols = rows[j]
+            if cols < n:
+                loc.append(matrix[i])
+                loc.append(rows[j])
+
+    return loc
+    
+    
+#Task file
+from functions import find_less
+
+matrix = [[8, 2, -3], [7, 4, 4], [-2, -1, 0], [-1, -6, 2]]
+n = float(input("Enter the target value: "))
+loc = find_less(matrix, n)
+print(loc)
+
+
+#testing
+Enter the target value: 4
+[[8, 2, -3], 2, [8, 2, -3], -3, [-2, -1, 0], -2, [-2, -1, 0], -1, [-2, -1, 0], 0, [-1, -6, 2], -1, [-1, -6, 2], -6, [-1, -6, 2], 2]
+
+
+-------------------------------------------------------
+t09
+-------------------------------------------------------
+
+-------------------------------------------------------
+t10
+-------------------------------------------------------
+
+-------------------------------------------------------
+t11
+-------------------------------------------------------
+
+-------------------------------------------------------
+t12
+-------------------------------------------------------
+
+-------------------------------------------------------
+t13
+-------------------------------------------------------
+
+-------------------------------------------------------
+t14
+-------------------------------------------------------
+
+-------------------------------------------------------
+t15
+-------------------------------------------------------
+def matrix_equal(matrix1, matrix2):
+    """
+    -------------------------------------------------------
+    Compares two matrices to see if they are equal - i.e. have the
+    same contents in the same locations.
+    Use: equal = matrix_equal(matrix1, matrix2)
+    -------------------------------------------------------
+    Parameters:
+        matrix1 - the first matrix (2D list of *)
+        matrix2 - the second matrix (2D list of *)
+    Returns:
+        equal - True if matrix1 and matrix2 are equal,
+            False otherwise (boolean)
+    ------------------------------------------------------
+    """
+
+    for i in range(len(matrix1)):
+        for j in range(len(matrix1[i])):
+            if matrix1[i][j] == matrix2[i][j]:
+                equal = True
+            else:
+                equal = False
+
+    return equal
+
+
+
+#Task file
+from functions import matrix_equal
+
+matrix1 = [[1, 2, 3], [4, 5, 6]]
+matrix2 = [[1, 2, 3], [4, 5, 6]]
+
+equal = matrix_equal(matrix1, matrix2)
+print(f"{equal}")
+
+
+#testing
+True
